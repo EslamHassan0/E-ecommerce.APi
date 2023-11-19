@@ -1,5 +1,6 @@
-using Assignment.Helpers;
+﻿using Assignment.Helpers;
 using Assignment.Models;
+using E_ecommerceAssignment.APi.Middlewares;
 using E_ecommerceAssignment.EF;
 using E_ecommerceAssignment.EF.Helpers;
 using E_ecommerceAssignment.EF.Services;
@@ -71,6 +72,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//انسب مكان ل Middleware
+app.UseMiddleware<RateLimitingMiddleware>();
+app.UseMiddleware<ProfilingMiddleweares>();
 
 app.UseStaticFiles(); //upload files
 app.UseStaticFiles(new StaticFileOptions()
