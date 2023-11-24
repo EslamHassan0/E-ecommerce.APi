@@ -15,7 +15,7 @@ namespace E_ecommerceAssignment.APi.Middlewares
          معلومات عن ال Request 
         الي رايح والي جي من اهم ال  class in Asp.Net Core 
          */
-        public async Task TaskAsync(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             var stopWatch = new Stopwatch();
             stopWatch.Start();

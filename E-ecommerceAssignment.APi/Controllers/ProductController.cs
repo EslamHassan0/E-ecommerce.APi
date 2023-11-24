@@ -26,10 +26,17 @@ namespace E_ecommerceAssignment.APi.Controllers
 
         [HttpGet("GetProductById/{Id}")]
         public async Task<IActionResult> GetProduct(int Id)
-           => Ok(await _unitOfWork.Product.Getbyid(Id));
+        {
+           return Ok(await _unitOfWork.Product.Getbyid(Id));
+
+        }
         [HttpPost("CreateProudct")]
         public async Task<IActionResult> CreateProudct(Product product)
-          => Ok(await _unitOfWork.Product.PostAsync(product));
+        {
+
+
+          return Ok(await _unitOfWork.Product.PostAsync(product));
+        }
         [HttpPut("UpdateProudct")]
         public async Task<IActionResult> UpdateProudct(Product product)
          => Ok(_unitOfWork.Product.Update(product));

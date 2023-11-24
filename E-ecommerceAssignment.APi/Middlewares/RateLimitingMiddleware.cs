@@ -9,7 +9,7 @@
         {
             _next = next;
         }
-        public async Task TaskAsync(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             _counter++;
             if (DateTime.Now.Subtract(_lastRequestDate).Seconds > 10)
@@ -20,7 +20,7 @@
             }
             else
             {
-               if(_counter == 5) 
+               if(_counter > 5) 
                {
                     _lastRequestDate = DateTime.Now;
                     await context.Response.WriteAsync("Rate limit exceeded");
