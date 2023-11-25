@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace E_ecommerceAssignment.EF.Models.Generic_Repository
         Task<T> Update(T entity);
         Task<T> Delete(int id);
         Task<IEnumerable<T>> GetALLAsync();
+
+        T FindProduct(Func<T,bool> condition);
     }
      
 }

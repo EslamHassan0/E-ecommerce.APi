@@ -25,6 +25,12 @@ namespace E_ecommerceAssignment.EF.Models.Generic_Repository
             return result;
         }
 
+        public T FindProduct(Func<T, bool> condition)
+        {
+            return _context.Set<T>().Where(condition).FirstOrDefault();
+        }
+
+       
         public async Task<IEnumerable<T>> GetALLAsync()
         {
             return await _context.Set<T>().ToListAsync();

@@ -1,5 +1,6 @@
 ﻿using Assignment.Helpers;
 using Assignment.Models;
+using E_ecommerceAssignment.APi.Filters;
 using E_ecommerceAssignment.APi.Middlewares;
 using E_ecommerceAssignment.EF;
 using E_ecommerceAssignment.EF.Helpers;
@@ -36,7 +37,11 @@ builder.Services.AddDbContext<E_ecommerceContext>(options =>
 
 builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
- 
+
+#region Filter
+builder.Services.AddScoped<CheckProductEsistesFilter>();
+#endregion
+
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IAuthrServices, AuthrServices>();

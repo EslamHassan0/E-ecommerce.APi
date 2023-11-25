@@ -48,6 +48,11 @@ namespace E_ecommerceAssignment.EF.Services
            
         }
 
+        public ApplicationUser FindUser(Func<ApplicationUser, bool> predicate)
+        {
+           return  _userManager.Users.Where(predicate).FirstOrDefault();
+        }
+
         public async Task<AuthModel> LoginAsync(LoginDto dto)
         {
             var auth = new AuthModel();

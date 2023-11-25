@@ -1,5 +1,8 @@
 ﻿using Assignment.Models;
+using AutoMapper;
+using E_ecommerceAssignment.APi.Filters;
 using E_ecommerceAssignment.EF;
+using E_ecommerceAssignment.EF.DTOs.ProductDTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +17,12 @@ namespace E_ecommerceAssignment.APi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork , IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
         //[Authorize(Roles = "Admin,User")]
         [HttpGet("GetProduct")]
@@ -31,11 +36,12 @@ namespace E_ecommerceAssignment.APi.Controllers
 
         }
         [HttpPost("CreateProudct")]
+        [ServiceFilter(typeof(CheckProductEsistesFilter))]
         public async Task<IActionResult> CreateProudct(Product product)
         {
+           
 
-
-          return Ok(await _unitOfWork.Product.PostAsync(product));
+            return Ok(await _unitOfWork.Product.PostAsync(product));
         }
         [HttpPut("UpdateProudct")]
         public async Task<IActionResult> UpdateProudct(Product product)

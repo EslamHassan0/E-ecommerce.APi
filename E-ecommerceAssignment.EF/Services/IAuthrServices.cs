@@ -1,4 +1,5 @@
-﻿using E_ecommerceAssignment.EF.Helpers;
+﻿using Assignment.Models;
+using E_ecommerceAssignment.EF.Helpers;
 using E_ecommerceAssignment.EF.Models;
 using System;
 using System.Collections.Generic;
@@ -13,5 +14,7 @@ namespace E_ecommerceAssignment.EF.Services
         Task<AuthModel> RegisterAsync(RegisterDto dto);
         Task<AuthModel> LoginAsync(LoginDto dto);
         Task<string> AddRoleAsync(RolesDto dto);
+
+        ApplicationUser FindUser(Func<ApplicationUser, bool> predicate);
     }
 }
