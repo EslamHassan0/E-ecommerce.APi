@@ -21,7 +21,6 @@ namespace E_ecommerceAssignment.EF.Models.Generic_Repository
         {
             var result = await _context.Set<T>().FindAsync(id);
             _context.Remove(result);
-            await _context.SaveChangesAsync();
             return result;
         }
 
@@ -44,16 +43,16 @@ namespace E_ecommerceAssignment.EF.Models.Generic_Repository
         public async Task<T> PostAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
             return entity;
         }
+
+        
 
         public async Task<T> Update(T entity)
         {
             _context.Update(entity);
-            _context.SaveChanges();
-
             return entity;
         }
+ 
     }
 }

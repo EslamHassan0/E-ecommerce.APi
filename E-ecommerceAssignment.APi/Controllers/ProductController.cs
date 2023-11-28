@@ -17,12 +17,12 @@ namespace E_ecommerceAssignment.APi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+       // private readonly IMapper _mapper;
 
-        public ProductController(IUnitOfWork unitOfWork , IMapper mapper)
+        public ProductController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
+           // _mapper = mapper;
         }
         //[Authorize(Roles = "Admin,User")]
         [HttpGet("GetProduct")]
@@ -39,9 +39,10 @@ namespace E_ecommerceAssignment.APi.Controllers
         [ServiceFilter(typeof(CheckProductEsistesFilter))]
         public async Task<IActionResult> CreateProudct(Product product)
         {
-           
 
-            return Ok(await _unitOfWork.Product.PostAsync(product));
+            var post = await _unitOfWork.Product.PostAsync(product);
+            _unitOfWork.Complete();
+            return Ok(post);
         }
         [HttpPut("UpdateProudct")]
         public async Task<IActionResult> UpdateProudct(Product product)

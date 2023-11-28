@@ -80,8 +80,9 @@ if (app.Environment.IsDevelopment())
 //انسب مكان ل Middleware
 app.UseMiddleware<RateLimitingMiddleware>();
 app.UseMiddleware<ProfilingMiddleweares>();
+//app.UseMiddleware<PayloadValidationMiddleware>();
 
-app.UseStaticFiles(); //upload files
+ //upload files
 app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"ProcductImage")),
